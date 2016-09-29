@@ -1,10 +1,13 @@
+PShape head;
 PShape horns;
 PShape teeth;
+PImage img;
 
 void setup() {
   size(500, 500);
   background(199);
-  
+  img = loadImage("fur.jpg");
+
   // horn setup
   horns = createShape();
   horns.beginShape();
@@ -16,10 +19,14 @@ void setup() {
   horns.vertex(80, 120);
   horns.endShape(CLOSE);
   
+  // head setup
+  head = createShape(ELLIPSE, 210, 135, 150, 110);
+  println(head);
+  
   // teeth setup
   teeth = createShape();
-  teeth.fill(255);
   teeth.beginShape();
+  teeth.fill(255);
   teeth.vertex(180, 150);
   teeth.vertex(185, 160);
   teeth.vertex(190, 150);
@@ -40,12 +47,12 @@ void setup() {
 void draw() {
   strokeWeight(1);
   fill(255);
-  
+
   // horns
   shape(horns);
   
   // head
-  ellipse(210, 135, 150, 110);
+  shape(head);
   
   // --- face ---
   // eyes
@@ -65,5 +72,5 @@ void draw() {
   shape(teeth);
   
   // debugging
-  println(mouseX, mouseY);
+  //println(mouseX, mouseY);
 }
