@@ -11,11 +11,11 @@ void setup() {
 }
 
 void draw() {
-  firstThirdW = width * 0.3;
-  firstThirdH = height * 0.3;
+  firstThirdW = width * random(0.31, 0.32);
+  firstThirdH = height * random(0.31, 0.32);
 
-  lastThirdW = width * 0.6;
-  lastThirdH = height * 0.6;
+  lastThirdW = width * random(0.61, 0.62);
+  lastThirdH = height * random(0.61, 0.62);
   background(200);
   
   //**
@@ -27,7 +27,7 @@ void draw() {
   
   // behind wing
   fill(0, 20);
-  bezier(firstThirdW - 40, firstThirdH - 40, firstThirdW - 80, 20, firstThirdW + 10, 30, firstThirdW + 10, firstThirdH - 40);
+  bezier(firstThirdW - 40, firstThirdH - 40, firstThirdW - 80, firstThirdH - 130, firstThirdW + 10, firstThirdH - 140, firstThirdW + 10, firstThirdH - 40);
 
   // behind legs
   fill(0);
@@ -57,7 +57,7 @@ void draw() {
   
   // forward wing
   fill(0, 20);
-  bezier(firstThirdW - 10, firstThirdH - 50, firstThirdW - 20, 0, firstThirdW + 80, 40, firstThirdW + 30, firstThirdH - 40);
+  bezier(firstThirdW - 10, firstThirdH - 50, firstThirdW - 20, 0, firstThirdW + 80, firstThirdH - 140, firstThirdW + 30, firstThirdH - 40);
 
   //**
   // The one on the right
@@ -68,7 +68,7 @@ void draw() {
   
   // behind wing
   fill(0, 20);
-  bezier(lastThirdW - 40, lastThirdH - 40, lastThirdW - 80, 120, lastThirdW + 10, 150, lastThirdW + 10, lastThirdH - 40);
+  bezier(lastThirdW - 40, lastThirdH - 40, lastThirdW - 80, lastThirdH / 2, lastThirdW + 10, lastThirdH / 3, lastThirdW + 10, lastThirdH - 40);
 
   // behind legs
   fill(0);
@@ -98,7 +98,7 @@ void draw() {
   
   // forward wing
   fill(0, 20);
-  bezier(lastThirdW - 10, lastThirdH - 50, lastThirdW - 20, 100, lastThirdW + 80, 150, lastThirdW + 30, lastThirdH - 40);
+  bezier(lastThirdW - 10, lastThirdH - 50, lastThirdW - 20, lastThirdH - 120, lastThirdW + 80, lastThirdH - 200, lastThirdW + 30, lastThirdH - 40);
   
   println(mouseX, mouseY);
 }
