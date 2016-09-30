@@ -7,17 +7,23 @@ float lastThirdH;
 void setup() {
   size(640, 480);
   smooth(8);
-  // ref img: https://goo.gl/images/42uTvP
 }
 
 void draw() {
+  background(242);
+
+  // Effect setup
+  float transitionVal = float(mouseX) / width;
+  scale(transitionVal);
+
+  // Characters
+  // randomize the position to get the shaky effect
   firstThirdW = width * random(0.31, 0.32);
   firstThirdH = height * random(0.31, 0.32);
 
   lastThirdW = width * random(0.61, 0.62);
   lastThirdH = height * random(0.61, 0.62);
-  background(200);
-  
+
   //**
   // The one on the left
   //**
@@ -25,11 +31,11 @@ void draw() {
   fill(0);
   triangle(firstThirdW - 110, firstThirdH, firstThirdW - 70, firstThirdH + 5, firstThirdW - 70, firstThirdH - 5);
   
-  // behind wing
+  // backside wing
   fill(0, 20);
   bezier(firstThirdW - 40, firstThirdH - 40, firstThirdW - 80, firstThirdH - 130, firstThirdW + 10, firstThirdH - 140, firstThirdW + 10, firstThirdH - 40);
 
-  // behind legs
+  // backside legs
   fill(0);
   ellipse(firstThirdW + 30, firstThirdH + 60, 5, 20);
   ellipse(firstThirdW - 5, firstThirdH + 62, 5, 20);
@@ -50,12 +56,12 @@ void draw() {
   ellipse(firstThirdW + 60, firstThirdH, 5, 5);
   ellipse(firstThirdW + 40, firstThirdH + 20, 15, 10);
   
-  // forward legs
+  // frontside legs
   ellipse(firstThirdW + 10, firstThirdH + 60, 5, 20);
   ellipse(firstThirdW - 20, firstThirdH + 61, 5, 20);
   ellipse(firstThirdW - 55, firstThirdH + 50, 5, 20);
   
-  // forward wing
+  // frontside wing
   fill(0, 20);
   bezier(firstThirdW - 10, firstThirdH - 50, firstThirdW - 20, 0, firstThirdW + 80, firstThirdH - 140, firstThirdW + 30, firstThirdH - 40);
 
@@ -66,11 +72,11 @@ void draw() {
   fill(0);
   triangle(lastThirdW - 110, lastThirdH, lastThirdW - 70, lastThirdH + 5, lastThirdW - 70, lastThirdH - 5);
   
-  // behind wing
+  // backside wing
   fill(0, 20);
   bezier(lastThirdW - 40, lastThirdH - 40, lastThirdW - 80, lastThirdH / 2, lastThirdW + 10, lastThirdH / 3, lastThirdW + 10, lastThirdH - 40);
 
-  // behind legs
+  // backside legs
   fill(0);
   ellipse(lastThirdW + 30, lastThirdH + 60, 5, 20);
   ellipse(lastThirdW - 5, lastThirdH + 62, 5, 20);
@@ -91,14 +97,12 @@ void draw() {
   ellipse(lastThirdW + 60, lastThirdH, 5, 5);
   ellipse(lastThirdW + 40, lastThirdH + 20, 15, 10);
   
-  // forward legs
+  // frontside legs
   ellipse(lastThirdW + 10, lastThirdH + 60, 5, 20);
   ellipse(lastThirdW - 20, lastThirdH + 61, 5, 20);
   ellipse(lastThirdW - 55, lastThirdH + 50, 5, 20);
   
-  // forward wing
+  // frontside wing
   fill(0, 20);
   bezier(lastThirdW - 10, lastThirdH - 50, lastThirdW - 20, lastThirdH - 120, lastThirdW + 80, lastThirdH - 200, lastThirdW + 30, lastThirdH - 40);
-  
-  println(mouseX, mouseY);
 }
