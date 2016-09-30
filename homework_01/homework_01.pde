@@ -29,7 +29,12 @@ void draw() {
   // body
   fill(239, 201, 0);
   ellipse(halfW, halfH, 160, 120);
-  
+  strokeWeight(3);
+  noFill();
+  arc(halfW, halfH, 60, 120, PI * .5, PI * 1.5);
+  arc(halfW - 30, halfH, 50, 110, PI * .5, PI * 1.5);
+  arc(halfW - 40, halfH, 60, 100, PI * .5, PI * 1.5);
+
   // face
   fill(0);
   ellipse(halfW + 25, halfH, 5, 5);
@@ -43,7 +48,7 @@ void draw() {
   
   // forward wing
   fill(0, 20);
-  bezier(halfW - 10, halfH - 50, halfW - 20, 0, halfW + 80, 40, halfW + 40, halfH - 35);
+  bezier(halfW - 10, halfH - 50, halfW - 20, 0, halfW + 80, 40, halfW + 30, halfH - 40);
   
   println(mouseX, mouseY);
 }
