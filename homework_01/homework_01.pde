@@ -20,7 +20,11 @@ void draw() {
   fill(0, 20);
   bezier(halfW - 40, halfH - 40, halfW - 80, 20, halfW + 10, 30, halfW + 10, halfH - 40);
 
-  
+  // behind legs
+  fill(0);
+  ellipse(halfW + 30, halfH + 60, 5, 20);
+  ellipse(halfW - 5, halfH + 62, 5, 20);
+  ellipse(halfW - 35, halfH + 55, 5, 20);
   
   // body
   fill(239, 201, 0);
@@ -32,8 +36,10 @@ void draw() {
   ellipse(halfW + 60, halfH, 5, 5);
   ellipse(halfW + 40, halfH + 20, 15, 10);
   
-  // legs
+  // forward legs
   ellipse(halfW + 10, halfH + 60, 5, 20);
+  ellipse(halfW - 20, halfH + 61, 5, 20);
+  ellipse(halfW - 55, halfH + 50, 5, 20);
   
   // forward wing
   fill(0, 20);
