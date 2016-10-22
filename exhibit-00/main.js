@@ -32,6 +32,8 @@ Cylon
         // faces.
         for (var i = 0; i < faces.length; i++) {
           var face = faces[i];
+          console.log('\n\n face.x, face.y', [face.x, face.y]);
+          console.log('\n\n face.width, face.height', [face.width, face.height]);
           im.rectangle(
             [face.x, face.y],
             [face.x + face.width, face.y + face.height],
