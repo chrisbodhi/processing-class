@@ -31,7 +31,8 @@ func main() {
 			if img != nil {
 				faces := cascade.DetectObjects(img)
 				for _, value := range faces {
-					fmt.Printf("%+v", value, "\n")
+					fmt.Printf("%+v", value)
+					fmt.Println("\n")
 					opencv.Circle(img,
 						opencv.Point{
 							value.X() + (value.Width() / 2),
