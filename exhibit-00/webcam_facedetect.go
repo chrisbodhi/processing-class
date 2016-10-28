@@ -5,13 +5,14 @@ import (
 	"os"
 	"path"
 
-	"github.com/lazywei/go-opencv/opencv"
+	opencv "github.com/lazywei/go-opencv/opencv"
 )
 
 func main() {
-	win := opencv.NewWindow("Go-OpenCV Webcam Face Detection")
+	win := opencv.NewWindow("todo: clever project name")
 	defer win.Destroy()
 
+	// Grabs from the zero-th camera
 	cap := opencv.NewCameraCapture(0)
 	if cap == nil {
 		panic("cannot open camera")
@@ -33,13 +34,21 @@ func main() {
 				for _, value := range faces {
 					fmt.Printf("%+v", value)
 					fmt.Println("\n")
-					opencv.Circle(img,
+					// every 5 minutes, if x and y, save image at the dimensions of that circle
+					// &{x:392 y:166 width:253 height:253}
+					// opencv.Crop(img, 0, 0, 50, 50)
+
+					opencv.Rectangle(
+						img,
 						opencv.Point{
-							value.X() + (value.Width() / 2),
-							value.Y() + (value.Height() / 2),
+							value.X(),
+							value.Y() - 15,
 						},
-						value.Width() / 2 + 25,
-						opencv.ScalarAll(455.0), 3, 1, 0)
+						opencv.Point{
+							value.X() + value.Width() + 25,
+							value.Y() + value.Height() + 50,
+						},
+						opencv.ScalarAll(255.0), 3, 1, 0)
 				}
 
 				win.ShowImage(img)
