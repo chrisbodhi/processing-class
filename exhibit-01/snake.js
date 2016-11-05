@@ -5,7 +5,8 @@ var oppX = new Array(tailLength);
 var oppY = new Array(tailLength);
 
 function setup() {
-  createCanvas(500, 500);
+  var canvas = createCanvas(windowWidth, windowHeight);
+  canvas.parent("p5canvas");
   pixelDensity(2);
   
   // init the arrays
@@ -21,14 +22,12 @@ function draw(){
   background(0);
   
   // shift all of the values
-  for (var i = 0; i < tailLength - 1; i++) {
-    xPos[i] = xPos[i + 1];
-    yPos[i] = yPos[i + 1];
-    
-    oppX[i] = oppX[i + 1];
-    oppY[i] = oppY[i + 1];
-  }
-  
+  xPos = [...xPos.slice(1), 0];
+  yPos = [...yPos.slice(1), 0];
+
+  oppX = [...oppX.slice(1), 0];
+  oppY = [...oppY.slice(1), 0];  
+
   // set the x and y positions
   xPos[tailLength - 1] = mouseX;
   yPos[tailLength - 1] = mouseY;
@@ -39,9 +38,10 @@ function draw(){
   // draw 'em all
   for (var i = 0; i < tailLength; i++) {
     noStroke();
+    var radius = i * 2.5;
     fill(0 + (i * 5));
-    ellipse(xPos[i], yPos[i], i, i);
-    ellipse(oppX[i], oppY[i], i, i);
+    ellipse(xPos[i], yPos[i], radius, radius);
+    ellipse(oppX[i], oppY[i], radius, radius);
   }
 }
 
