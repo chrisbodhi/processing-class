@@ -11,7 +11,7 @@ import (
 
 func main() {
 	_, currentfile, _, _ := runtime.Caller(0)
-	filename := path.Join(path.Dir(currentfile), "test.jpg")
+	filename := path.Join(path.Dir(currentfile), "face.jpg")
 	if len(os.Args) == 2 {
 		filename = os.Args[1]
 	}
