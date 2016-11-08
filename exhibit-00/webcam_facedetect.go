@@ -9,6 +9,7 @@ import (
 	opencv "github.com/lazywei/go-opencv/opencv"
 )
 
+var key, x1, y1, x2, y2 int
 
 func saveImage(img *opencv.IplImage, x1 int, y1 int, x2 int, y2 int) {
 	opencv.SaveImage("face.jpg", img, 0)
@@ -50,6 +51,7 @@ func main() {
 	cascade := opencv.LoadHaarClassifierCascade(path.Join(cwd, "haarcascade_frontalface_alt.xml"))
 
 	fmt.Println("Press ESC to quit")
+	fmt.Println("Press space bar to photograph")
 
 	for {
 		if cap.GrabFrame() {
@@ -57,6 +59,8 @@ func main() {
 			if img != nil {
 				faces := cascade.DetectObjects(img)
 				for _, value := range faces {
+
+					// todo: delete rectangle when everything is :ok_hand:
 					opencv.Rectangle(
 						img,
 						opencv.Point{
@@ -69,22 +73,27 @@ func main() {
 						},
 						opencv.ScalarAll(255.0), 3, 1, 0)
 
-				 	x1 := value.X()
-					y1 := value.Y() - 15
-					x2 := x1 + value.Width() + 25
-					y2 := y1 + value.Height() + 50
+					x1 = value.X()
+					y1 = value.Y() - 15
+					x2 = x1 + value.Width() + 25
+					y2 = y1 + value.Height() + 50
 					fmt.Println(x1, y1, x2, y2)
+				}
+				fmt.Printf("\n\nbout to show you that image: %T\n\n", img)
+				win.ShowImage(img)
+
+				key = opencv.WaitKey(1)
+
+				// Take a photo with the space bar
+				if key == 32 {
 					saveImage(img, x1, y1, x2, y2)
 				}
-
-				win.ShowImage(img)
 			} else {
 				fmt.Println("nil image")
 			}
 		}
 
-		key := opencv.WaitKey(1)
-
+		// Exit with the ESC key
 		if key == 27 {
 			os.Exit(0)
 		}
