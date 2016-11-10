@@ -12,20 +12,17 @@ var key, x1, y1, x2, y2 int
 
 func saveAndCropImage(img *opencv.IplImage, x1 int, y1 int, x2 int, y2 int) {
 	opencv.SaveImage("face.jpg", img, 0)
-	fmt.Println("\n\nface saved\n\n")
+	fmt.Println("Face saved.")
 
  	_, currentfile, _, _ := runtime.Caller(0)
  	filename := path.Join(path.Dir(currentfile), "face.jpg")
- 	if len(os.Args) == 2 {
- 		filename = os.Args[1]
-	}
 
  	image := opencv.LoadImage(filename)
  	if image == nil {
  		panic("LoadImage failed")
  	}
  	defer image.Release()
-
+	fmt.Printf("image type is %T \n", image)
  	crop := opencv.Crop(image, x1, y1, x2, y2)
  	opencv.SaveImage("cropped.jpg", crop, 0)
  	crop.Release()
@@ -47,8 +44,7 @@ func main() {
 	}
 	cascade := opencv.LoadHaarClassifierCascade(path.Join(cwd, "haarcascade_frontalface_alt.xml"))
 
-	fmt.Println("Press ESC to quit")
-	fmt.Println("Press space bar to photograph")
+	fmt.Println("Press space bar to photograph and press ESC to quit")
 
 	for {
 		if cap.GrabFrame() {
@@ -69,11 +65,12 @@ func main() {
 							value.Y() + value.Height() + 150,
 						},
 						opencv.ScalarAll(255.0), 3, 1, 0)
-
-					x1 = value.X()
-					y1 = value.Y() - 15
-					x2 = x1 + value.Width() + 25
-					y2 = y1 + value.Height() + 50
+					
+					// todo: make image 4:3 ratio
+					x1 = value.X() - 15
+					y1 = value.Y() - 75
+					x2 = value.X() + value.Width() + 45
+					y2 = value.Y() + value.Height() + 150
 					fmt.Println(x1, y1, x2, y2)
 				}
 
