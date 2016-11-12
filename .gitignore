@@ -5,4 +5,5 @@ templates/
 tools/
 exhibit-00/face.jpg
 exhibit-00/cropped.jpg
-
+*/.vscode/
+*/debug
