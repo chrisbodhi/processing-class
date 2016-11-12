@@ -1,0 +1,16 @@
+{
+  "name": "exhibit-01",
+  "version": "0.0.1",
+  "description": "Connect to the running server, ideally on a touch device.",
+  "main": "webserver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "https://github.com/chrisbodhi/processing-class/tree/master/exhibit-01",
+  "keywords": [
+    "Tessel",
+    "Processing",
+    "p5.js"
+  ],
+  "license": "MIT"
+}
