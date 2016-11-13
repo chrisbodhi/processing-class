@@ -12,7 +12,7 @@ var key, x1, y1, width, height int
 
 func saveAndCropImage(img *opencv.IplImage, x1 int, y1 int, width int, height int) {
 	opencv.SaveImage("face.jpg", img, 0)
-	fmt.Println("Face saved.")
+	fmt.Println("\n\nFace saved.")
 
  	_, currentfile, _, _ := runtime.Caller(0)
  	filename := path.Join(path.Dir(currentfile), "face.jpg")
