@@ -27,6 +27,8 @@ func saveAndCropImage(img *opencv.IplImage, x1 int, y1 int, x2 int, y2 int) {
  	opencv.SaveImage("cropped.jpg", crop, 0)
 	fmt.Println("Cropped image saved.")
  	crop.Release()
+
+	os.Exit(0)
 }
 
 func main() {
