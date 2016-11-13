@@ -56,7 +56,6 @@ func main() {
 				faces := cascade.DetectObjects(img)
 				for _, value := range faces {
 
-					// todo: delete rectangle when everything is :ok_hand:
 					opencv.Rectangle(
 						img,
 						opencv.Point{
@@ -68,14 +67,13 @@ func main() {
 							value.Y() + value.Height() + 150,
 						},
 						opencv.ScalarAll(255.0), 3, 1, 0)
-					
-					// todo: make image 4:3 ratio
+
 					x1 = value.X() - 15
 					y1 = value.Y() - 75
 					width = value.Width() + 45
 					height = value.Height() + 150
 
-					fmt.Printf("%#v", value)
+					fmt.Printf("\n%#v", value)
 				}
 
 				win.ShowImage(img)
