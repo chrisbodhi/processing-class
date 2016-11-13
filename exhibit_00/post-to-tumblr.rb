@@ -11,7 +11,7 @@ def clean_up
 
   FileUtils.remove(Dir.glob('artifacts/f*.gif'))
   File.rename('glitch.gif', new_filename)
-  FileUtils.mv(new_filename, "artifacts/#{new_filename}")
+  FileUtils.mv(new_filename, "glitched/#{new_filename}")
 end
 
 # Authenticate via OAuth
