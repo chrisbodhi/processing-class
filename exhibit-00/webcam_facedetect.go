@@ -22,9 +22,10 @@ func saveAndCropImage(img *opencv.IplImage, x1 int, y1 int, x2 int, y2 int) {
  		panic("LoadImage failed")
  	}
  	defer image.Release()
-	fmt.Printf("image type is %T \n", image)
+
  	crop := opencv.Crop(image, x1, y1, x2, y2)
  	opencv.SaveImage("cropped.jpg", crop, 0)
+	fmt.Println("Cropped image saved.")
  	crop.Release()
 }
 
@@ -67,11 +68,10 @@ func main() {
 						opencv.ScalarAll(255.0), 3, 1, 0)
 					
 					// todo: make image 4:3 ratio
-					x1 = value.X() - 15
-					y1 = value.Y() - 75
-					x2 = value.X() + value.Width() + 45
-					y2 = value.Y() + value.Height() + 150
-					fmt.Println(x1, y1, x2, y2)
+					x1 = value.X()
+					y1 = value.Y()
+					x2 = value.Width()
+					y2 = value.Height()
 				}
 
 				win.ShowImage(img)
