@@ -5,6 +5,15 @@ require 'tumblr_client'
 
 Dotenv.load
 
+def clean_up
+  uuid = SecureRandom.uuid
+  new_filename = "glitch-#{uuid}.gif"
+
+  FileUtils.remove(Dir.glob('artifacts/f*.gif'))
+  File.rename('glitch.gif', new_filename)
+  FileUtils.mv(new_filename, "artifacts/#{new_filename}")
+end
+
 # Authenticate via OAuth
 client = Tumblr::Client.new({
   :consumer_key => ENV['CONSUMER_KEY'],
@@ -13,14 +22,12 @@ client = Tumblr::Client.new({
   :oauth_token_secret => ENV['OAUTH_TOKEN_SECRET']
 })
 
-client.photo('dadaphotobooth.tumblr.com', {data: 'glitch.gif'})
+begin
+  client.photo('dadaphotobooth.tumblr.com', {data: 'glitch.gif'})
+  puts "Done posting glitch.gif to Tumblr.\n"
+rescue
+  puts "Error saving to Tumblr.\n"
+end
 
 clean_up
-
-def clean_up
-  uuid = SecureRandom.uuid
-  new_filename = "glitch-#{uuid}.gif"
-  File.rename('glitch.gif', new_filename)
-  FileUtils.mv(new_filename, "/artifacts/#{new_filename}")
-end
 
