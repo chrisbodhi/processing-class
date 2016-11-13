@@ -1,4 +1,6 @@
 require 'dotenv'
+require 'fileutils'
+require 'securerandom'
 require 'tumblr_client'
 
 Dotenv.load
@@ -11,7 +13,14 @@ client = Tumblr::Client.new({
   :oauth_token_secret => ENV['OAUTH_TOKEN_SECRET']
 })
 
-image = File.open('cropped.jpg', 'rb').read
+client.photo('dadaphotobooth.tumblr.com', {data: 'glitch.gif'})
 
-client.photo('dadaphotobooth.tumblr.com', {data: 'cropped.jpg'})
+clean_up
+
+def clean_up
+  uuid = SecureRandom.uuid
+  new_filename = "glitch-#{uuid}.gif"
+  File.rename('glitch.gif', new_filename)
+  FileUtils.mv(new_filename, "/artifacts/#{new_filename}")
+end
 
