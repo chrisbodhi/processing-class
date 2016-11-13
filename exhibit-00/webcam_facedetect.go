@@ -72,6 +72,8 @@ func main() {
 					y1 = value.Y()
 					x2 = value.Width()
 					y2 = value.Height()
+
+					fmt.Printf("%#v", value)
 				}
 
 				win.ShowImage(img)
