@@ -8,9 +8,9 @@ import (
 	opencv "github.com/lazywei/go-opencv/opencv"
 )
 
-var key, x1, y1, x2, y2 int
+var key, x1, y1, width, height int
 
-func saveAndCropImage(img *opencv.IplImage, x1 int, y1 int, x2 int, y2 int) {
+func saveAndCropImage(img *opencv.IplImage, x1 int, y1 int, width int, height int) {
 	opencv.SaveImage("face.jpg", img, 0)
 	fmt.Println("Face saved.")
 
@@ -23,7 +23,7 @@ func saveAndCropImage(img *opencv.IplImage, x1 int, y1 int, x2 int, y2 int) {
  	}
  	defer image.Release()
 
- 	crop := opencv.Crop(image, x1, y1, x2, y2)
+ 	crop := opencv.Crop(image, x1, y1, width, height)
  	opencv.SaveImage("cropped.jpg", crop, 0)
 	fmt.Println("Cropped image saved.")
  	crop.Release()
@@ -70,10 +70,10 @@ func main() {
 						opencv.ScalarAll(255.0), 3, 1, 0)
 					
 					// todo: make image 4:3 ratio
-					x1 = value.X()
-					y1 = value.Y()
-					x2 = value.Width()
-					y2 = value.Height()
+					x1 = value.X() - 15
+					y1 = value.Y() - 75
+					width = value.Width() + 45
+					height = value.Height() + 150
 
 					fmt.Printf("%#v", value)
 				}
@@ -84,7 +84,7 @@ func main() {
 
 				// Take a photo with the space bar
 				if key == 32 {
-					saveAndCropImage(img, x1, y1, x2, y2)
+					saveAndCropImage(img, x1, y1, width, height)
 				}
 			} else {
 				fmt.Println("nil image")
