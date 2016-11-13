@@ -4,16 +4,13 @@ based on:
  + a pixel sorting sketch from Jerome Martinez
  */
  
- // output needs to be 1066 x 800
+// output needs to be 1066 x 800
  
 PImage img;
 String imgFileName = "cropped";
 String fileType = "jpg";
 
 int[][] values;
-int currentFrame;
-int frameSample = 500;
-boolean saveFrames = false;
 
 void setup() {
   img = loadImage(imgFileName + "." + fileType);
@@ -32,7 +29,7 @@ void setup() {
   img.loadPixels();
   noStroke();
  
-  frameRate(1500);
+  frameRate(3000);
 }
 
 void draw() {
@@ -55,17 +52,14 @@ void draw() {
   rect(randx+randx_offset, randy+randy_offset, randw, rands);
   
   filter(POSTERIZE, 6);
-  //filter(INVERT);
   
-  if (saveFrames && frameCount-currentFrame < frameSample) {
-    //saveFrame("f###.gif");
-    
-    
-    
-  }
-}
+  println(frameCount);
 
-void mousePressed() {
-  saveFrames = true;
-  currentFrame = frameCount;
+  if (frameCount > 1500 && frameCount < 3500) {
+    saveFrame("/Users/IceKing/Code/art/dadageek/processing-class/exhibit_00/artifacts/f#####.gif");
+  }
+
+  if (frameCount == 3500) {
+    exit();
+  }
 }
