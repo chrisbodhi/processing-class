@@ -4,32 +4,12 @@ import (
 	"fmt"
 	"os"
 	"path"
-	"runtime"
+
+	"./utils"
 	opencv "github.com/lazywei/go-opencv/opencv"
 )
 
 var key, x1, y1, width, height int
-
-func saveAndCropImage(img *opencv.IplImage, x1 int, y1 int, width int, height int) {
-	opencv.SaveImage("face.jpg", img, 0)
-	fmt.Println("\n\nFace saved.")
-
- 	_, currentfile, _, _ := runtime.Caller(0)
- 	filename := path.Join(path.Dir(currentfile), "face.jpg")
-
- 	image := opencv.LoadImage(filename)
- 	if image == nil {
- 		panic("LoadImage failed")
- 	}
- 	defer image.Release()
-
- 	crop := opencv.Crop(image, x1, y1, width, height)
- 	opencv.SaveImage("cropped.jpg", crop, 0)
-	fmt.Println("Cropped image saved.")
- 	crop.Release()
-
-	os.Exit(0)
-}
 
 func main() {
 	win := opencv.NewWindow("todo: clever project name")
@@ -82,7 +62,7 @@ func main() {
 
 				// Take a photo with the space bar
 				if key == 32 {
-					saveAndCropImage(img, x1, y1, width, height)
+					utils.SaveAndCropImage(img, x1, y1, width, height)
 				}
 			} else {
 				fmt.Println("nil image")
@@ -95,4 +75,3 @@ func main() {
 		}
 	}
 }
-
