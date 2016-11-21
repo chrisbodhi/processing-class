@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"path"
-
 	"./utils"
 	opencv "github.com/lazywei/go-opencv/opencv"
 )
@@ -63,6 +62,7 @@ func main() {
 				// Take a photo with the space bar
 				if key == 32 {
 					utils.SaveAndCropImage(img, x1, y1, width, height)
+					utils.ExecCli()
 				}
 			} else {
 				fmt.Println("nil image")
